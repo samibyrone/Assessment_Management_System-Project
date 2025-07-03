@@ -1,24 +1,10 @@
-import React from 'react';
+'use client';
 
-const LoginPage = () => {
+import React, { JSX } from 'react';
+import LoginForm from '../../Component/LoginForm/LoginForm';
+
+export default function LoginPage(): JSX.Element {
   return (
-    <div>
-      <h1>Login</h1>
-      <form>
-        <label>
-          Email:
-          <input type="email" name="email" />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label> 
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <LoginForm />
   );
-};
-
-export default LoginPage;
+}
