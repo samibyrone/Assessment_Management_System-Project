@@ -25,7 +25,7 @@ export default function SignupForm(): JSX.Element {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleSignup(username,email, password, role);
+            handleSignup(username, email, password, role);
           }}
         >
           <div className='space-y-4'>
