@@ -1,8 +1,9 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { BarChart3, BookOpen, TrendingUp, Award, Search, Plus, Users, AlertCircle, Settings, X } from 'lucide-react';
 
-type User = {
+export type User = {
     role: 'Creator' | 'Talent' | 'admin';
     avatar: string;
     name: string;
@@ -30,7 +31,9 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentU
         { id: 'assessments', label: 'Assessments', icon: BookOpen },
         { id: 'progress', label: 'Progress', icon: TrendingUp },
         { id: 'badges', label: 'Badges', icon: Award },
-        { id: 'search', label: 'Search', icon: Search }
+        { id: 'search', label: 'Search', icon: Search },
+        { id: 'create-assessment', label: 'Create Assessment', icon: Plus },
+        { id: 'create-course', label: 'Create Course', icon: BookOpen }
       ],
       Talent: [
         { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
@@ -51,15 +54,16 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentU
     const items = menuItems[currentUser?.role || 'Creator'];
 
     return (
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`bg-blue-400 fixed inset-y-0 left-0 z-50 w-64 shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
           <div className="flex items-center gap-2">
             <div className="bg-indigo-600 text-white rounded-lg w-8 h-8 flex items-center justify-center">
               <BookOpen className="w-5 h-5" />
             </div>
-            <span className="text-xl font-bold text-gray-900">AssessHub</span>
+            <span className="text-xl font-bold text-gray-900">AMS Hub</span>
           </div>
           <button
+            type="button"
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden"
             title="Close sidebar"
@@ -73,6 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentU
             const Icon = item.icon;
             return (
               <button
+                type="button"
                 key={item.id}
                 onClick={() => {
                   setCurrentView(item.id);
@@ -104,6 +109,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentU
             </div>
           </div>
           <button
+            type="button"
             onClick={handleLogout}
             className="w-full bg-gray-100 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-200 transition-colors text-sm"
           >
