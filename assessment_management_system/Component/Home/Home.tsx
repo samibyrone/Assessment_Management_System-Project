@@ -1,7 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { Plus, BookOpen, Users, CheckCircle, Award } from 'lucide-react';
-import Sidebar from './NavBar/Navbar';
+import Sidebar from './SideBar/Sidebar';
 import AssessmentPage from './Assessment/AssessmentPage';
 import StudentDashboard from './Assessment/StudentDashboard';
 import AnalyticsPage from './MarketPlace/AnalyticsPage';
@@ -156,10 +156,21 @@ const StatCard = ({ icon: Icon, title, value, change, color }: StatCardProps) =>
   };
   
   export default function Home() {
-    const [activeTab] = useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [currentView, setCurrentView] = useState('dashboard');
+  
+    const currentUser = {
+      role: 'Creator',
+      avatar: '/vercel.svg',
+      name: 'John Doe',
+    };
+  
+    const handleLogout = () => {
+      // Handle logout logic here
+    };
   
     const renderContent = () => {
-      switch (activeTab) {
+      switch (currentView) {
         case 'dashboard':
           return <Dashboard />;
         case 'assessments':
@@ -175,7 +186,14 @@ const StatCard = ({ icon: Icon, title, value, change, color }: StatCardProps) =>
   
     return (
       <div className="flex bg-slate-100">
-        <Sidebar/>
+        <Sidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          currentUser={currentUser}
+          currentView={currentView}
+          setCurrentView={setCurrentView}
+          handleLogout={handleLogout}
+        />
         <main className="flex-1 p-8 overflow-y-auto">
           {renderContent()}
         </main>

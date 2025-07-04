@@ -71,7 +71,7 @@ export default function LandingPage() {
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/marketplace" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
+              <Link href="/assessmentPage" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
                 Browse Assessments
               </Link>
             </div>

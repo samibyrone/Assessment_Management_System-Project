@@ -1,7 +1,15 @@
-export const handleSignup = (username: string, email: string, password: string, role: string) => {
-  console.log('Logging in with:',username, email, password, role);
+interface RouterType {
+  push: (path: string) => void;
+}
+
+export const handleSignup = (username: string, email: string, password: string, role: string, router: RouterType) => {
+  console.log('Signing in with:',username, email, password, role);
+  if (username && email && password) {
+    router.push('/marketplace');
+  }
 };
 
-export const handleGoogleAuth = (role: string) => {
+export const handleGoogleAuthSignup = (role: string, router: RouterType) => {
   console.log('Authenticating with Google as:', role);
+  router.push('/marketplace');
 };

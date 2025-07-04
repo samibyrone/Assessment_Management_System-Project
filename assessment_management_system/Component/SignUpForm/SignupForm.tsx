@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen } from "lucide-react";
-import { handleSignup, handleGoogleAuth } from "../SignUpForm/SignupAuth";
+import { useRouter } from 'next/navigation';
+import { handleSignup, handleGoogleAuthSignup } from "../SignUpForm/SignupAuth";
 
 export default function SignupForm(): JSX.Element {
   const [isSignup, setIsSignup] = useState(false);
@@ -8,9 +9,10 @@ export default function SignupForm(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Talent");
+  const router = useRouter();
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4' style={{backgroundColor: "white"}}>
+    <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4'>
       <div className='bg-white rounded-2xl shadow-xl p-8 w-full max-w-md'>
         <div className='text-center mb-8'>
           <div className='bg-indigo-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4'>
@@ -25,7 +27,7 @@ export default function SignupForm(): JSX.Element {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleSignup(username, email, password, role);
+            handleSignup(username, email, password, role, router);
           }}
         >
           <div className='space-y-4'>
@@ -107,7 +109,8 @@ export default function SignupForm(): JSX.Element {
           </div>
 
           <button
-            onClick={() => handleGoogleAuth(role)}
+            type='button'
+            onClick={() => handleGoogleAuthSignup(role, router)}
             className='mt-4 w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-2'
           >
             <svg className='w-5 h-5' viewBox='0 0 24 24'>
@@ -135,6 +138,7 @@ export default function SignupForm(): JSX.Element {
         <p className='mt-6 text-center text-sm text-gray-600'>
           {isSignup ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
+            type='button'
             onClick={() => setIsSignup(!isSignup)}
             className='text-indigo-600 hover:text-indigo-500 font-medium'
           >
