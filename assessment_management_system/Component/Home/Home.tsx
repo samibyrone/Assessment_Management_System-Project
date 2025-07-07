@@ -6,7 +6,8 @@ import AssessmentPage from './Assessment/AssessmentPage';
 import StudentDashboard from './Assessment/StudentDashboard';
 import AnalyticsPage from './MarketPlace/AnalyticsPage';
 import { LucideIcon } from 'lucide-react';
-
+import { User } from './SideBar/Sidebar';
+import Badges from './Badges/Badges';
 type StatCardProps = {
   icon: LucideIcon;
   title: string;
@@ -159,14 +160,14 @@ const StatCard = ({ icon: Icon, title, value, change, color }: StatCardProps) =>
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [currentView, setCurrentView] = useState('dashboard');
   
-    const currentUser = {
+    const currentUser: User = {
       role: 'Creator',
       avatar: '/vercel.svg',
       name: 'John Doe',
     };
   
     const handleLogout = () => {
-      // Handle logout logic here
+
     };
   
     const renderContent = () => {
@@ -179,6 +180,8 @@ const StatCard = ({ icon: Icon, title, value, change, color }: StatCardProps) =>
           return <StudentDashboard />;
         case 'analytics':
           return <AnalyticsPage />;
+        case 'badges':
+          return <Badges setCurrentView={setCurrentView} />;
         default:
           return <Dashboard />;
       }

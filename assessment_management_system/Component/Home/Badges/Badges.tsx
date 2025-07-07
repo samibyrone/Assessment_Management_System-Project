@@ -1,6 +1,11 @@
 
-  // Badges Component
-  const Badges = () => (
+import { CheckCircle } from 'lucide-react';
+interface BadgesProps {
+  setCurrentView: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Badges ({ setCurrentView }: BadgesProps) {
+  return (
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Badges & Achievements</h1>
@@ -58,8 +63,7 @@
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div
-                    className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                    style={{ width: `${badge.progress}%` }}
+                    className={`bg-indigo-600 h-2 rounded-full transition-all duration-300 w-[${badge.progress}%]`}
                   />
                 </div>
               </div>
@@ -82,3 +86,4 @@
       </div>
     </div>
   );
+}

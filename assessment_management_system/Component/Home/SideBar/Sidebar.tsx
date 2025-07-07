@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation'; // Import useRouter and usePathname
 import { BarChart3, BookOpen, TrendingUp, Award, Search, Plus, Users, AlertCircle, Settings, X } from 'lucide-react';
 
 export type User = {
@@ -13,8 +14,6 @@ interface SidebarProps {
     sidebarOpen: boolean;
     setSidebarOpen: (open: boolean) => void;
     currentUser: User | null;
-    currentView: string;
-    setCurrentView: (view: string) => void;
     handleLogout: () => void;
 }
 
@@ -22,32 +21,37 @@ type MenuItem = {
     id: string;
     label: string;
     icon: React.ElementType;
+    path: string; // Add path for navigation
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentUser, currentView, setCurrentView, handleLogout }) => {
+const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentUser, handleLogout }) => {
+    const router = useRouter(); // Initialize useRouter
+    const pathname = usePathname(); // Initialize usePathname
+
     const menuItems: { [key: string]: MenuItem[] } = {
       Creator: [
-        { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-        { id: 'assessments', label: 'Assessments', icon: BookOpen },
-        { id: 'progress', label: 'Progress', icon: TrendingUp },
-        { id: 'badges', label: 'Badges', icon: Award },
-        { id: 'search', label: 'Search', icon: Search },
-        { id: 'create-assessment', label: 'Create Assessment', icon: Plus },
-        { id: 'create-course', label: 'Create Course', icon: BookOpen }
+        { id: 'dashboard', label: 'Dashboard', icon: BarChart3, path: '/creatorDashboard' },
+        { id: 'assessments', label: 'Assessments', icon: BookOpen, path: '/assessments' },
+        { id: 'progress', label: 'Progress', icon: TrendingUp, path: '/progress' },
+        { id: 'badges', label: 'Badges', icon: Award, path: '/badges' },
+        { id: 'search', label: 'Search', icon: Search, path: '/search' },
+        { id: 'create-assessment', label: 'Create Assessment', icon: Plus, path: '/assessmentPage' },
+        { id: 'create-course', label: 'Create Course', icon: BookOpen, path: '/create-course' },
+        { id: 'analytics', label: 'Analytics', icon: TrendingUp, path: '/analytics' } // Added Analytics
       ],
       Talent: [
-        { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-        { id: 'my-assessments', label: 'My Assessments', icon: BookOpen },
-        { id: 'create-assessment', label: 'Create Assessment', icon: Plus },
-        { id: 'analytics', label: 'Analytics', icon: TrendingUp },
-        { id: 'students', label: 'Students', icon: Users }
+        { id: 'dashboard', label: 'Dashboard', icon: BarChart3, path: '/talentDashboard' },
+        { id: 'my-assessments', label: 'My Assessments', icon: BookOpen, path: '/my-assessments' },
+        { id: 'create-assessment', label: 'Create Assessment', icon: Plus, path: '/assessmentPage' },
+        { id: 'analytics', label: 'Analytics', icon: TrendingUp, path: '/analytics' },
+        { id: 'students', label: 'Students', icon: Users, path: '/students' }
       ],
       admin: [
-        { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
-        { id: 'content-management', label: 'Content Management', icon: BookOpen },
-        { id: 'user-management', label: 'User Management', icon: Users },
-        { id: 'flagged-content', label: 'Flagged Content', icon: AlertCircle },
-        { id: 'system-settings', label: 'Settings', icon: Settings }
+        { id: 'dashboard', label: 'Dashboard', icon: BarChart3, path: '/adminDashboard' },
+        { id: 'content-management', label: 'Content Management', icon: BookOpen, path: '/content-management' },
+        { id: 'user-management', label: 'User Management', icon: Users, path: '/user-management' },
+        { id: 'flagged-content', label: 'Flagged Content', icon: AlertCircle, path: '/flagged-content' },
+        { id: 'system-settings', label: 'Settings', icon: Settings, path: '/system-settings' }
       ]
     };
 
@@ -80,11 +84,11 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen, currentU
                 type="button"
                 key={item.id}
                 onClick={() => {
-                  setCurrentView(item.id);
+                  router.push(item.path); // Use router.push for navigation
                   setSidebarOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-6 py-3 text-left hover:bg-gray-50 transition-colors ${
-                  currentView === item.id ? 'bg-indigo-50 text-indigo-600 border-r-2 border-indigo-600' : 'text-gray-700'
+                  pathname === item.path ? 'bg-indigo-50 text-indigo-600 border-r-2 border-indigo-600' : 'text-gray-700'
                 }`}
               >
                 <Icon className="w-5 h-5" />

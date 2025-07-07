@@ -3,7 +3,7 @@ import { BookOpen } from "lucide-react";
 import { handleLogin, handleGoogleAuth } from "./Auth";
 import { useRouter } from 'next/navigation';
 
-export default function LoginForm(): JSX.Element {
+export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
