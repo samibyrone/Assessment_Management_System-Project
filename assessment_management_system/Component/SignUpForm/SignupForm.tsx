@@ -3,7 +3,7 @@ import { BookOpen } from "lucide-react";
 import { useRouter } from 'next/navigation';
 import { handleSignup, handleGoogleAuthSignup } from "../SignUpForm/SignupAuth";
 
-export default function SignupForm(): JSX.Element {
+export default function SignupForm() {
   const [isSignup, setIsSignup] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

@@ -34,9 +34,9 @@ const AssessmentList: React.FC<AssessmentListProps> = ({ assessments, currentUse
       <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Programming</button>
       <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Design</button>
       <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Business</button>
-      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Programming</button>
-      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Design</button>
-      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Business</button>
+      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Architechture</button>
+      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">System Analysis</button>
+      <button className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">Education</button>
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,7 +79,7 @@ const AssessmentList: React.FC<AssessmentListProps> = ({ assessments, currentUse
   </div>
 );
 
-export default function Assessments(): JSX.Element {
+export default function Assessments() {
   const [currentView, setCurrentView] = React.useState('list'); // 'list' or 'create-assessment'
   const [assessments] = React.useState<Assessment[]>(initialAssessments);
   const [currentUser] = React.useState<User>(mockCurrentUser);

@@ -11,20 +11,26 @@ interface Student {
   status: 'active' | 'inactive';
 }
 
-interface StudentListProps {
-  students: Student[];
-}
 
-const StudentList: React.FC<StudentListProps> = ({ students }) => (
+
+export default function StudentDashboard () {
+  const students: Student[] = [
+    { id: 1, name: 'John Doe', email: 'johndoe@example.com', assessments: 5, avgScore: 80, status: 'active' },
+    { id: 2, name: 'Jane Smith', email: 'janesmith@example.com', assessments: 3, avgScore: 70, status: 'inactive' },
+    { id: 3, name: 'Bob Johnson', email: 'bobjohnson@example.com', assessments: 2, avgScore: 60, status: 'active' },
+    { id: 4, name: 'Alice Brown', email: 'alicebrown@example.com', assessments: 4, avgScore: 90, status: 'inactive' },
+  ];
+
+  return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-3xl font-bold text-slate-900">Students</h2>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50">
+          <button type='button' className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50">
             <Upload className="w-4 h-4" />
             Import
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50">
+          <button type ="button" className="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg hover:bg-slate-50">
             <Download className="w-4 h-4" />
             Export
           </button>
@@ -66,5 +72,4 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => (
       </div>
     </div>
   );
-
-export default StudentList;
+};

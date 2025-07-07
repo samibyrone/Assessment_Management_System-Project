@@ -1,6 +1,13 @@
+import { BarChart3 } from 'lucide-react';
 
-  // Analytics Component (for Educators/Employers)
-  const Analytics = () => (
+export default function Analytics () {
+  const assessments = [
+    { id: '1', title: 'Mathematics Quiz', participants: 150, avgScore: 85 },
+    { id: '2', title: 'English Grammar Test', participants: 120, avgScore: 72 },
+    { id: '3', title: 'Science Aptitude', participants: 90, avgScore: 90 },
+  ];
+
+  return (
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics Dashboard</h1>
@@ -73,3 +80,5 @@
       </div>
     </div>
   );
+};
+

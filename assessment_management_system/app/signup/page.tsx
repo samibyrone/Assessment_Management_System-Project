@@ -1,9 +1,9 @@
 'use client';
 
-import React, { JSX } from 'react';
+import React from 'react';
 import SignupForm from '../../Component/SignUpForm/SignupForm';
 
-export default function SignupPage(): JSX.Element {
+export default function SignupPage() {
   return (
     <SignupForm />
   );
