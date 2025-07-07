@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation'; // Import useRouter
 import Sidebar, { User } from '../SideBar/Sidebar';
 
 const CreatorDashboard: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [currentView, setCurrentView] = useState('dashboard'); 
+  const [sidebarOpen, setSidebarOpen] = React.useState(false); // Keep useState for sidebarOpen
+  const router = useRouter(); // Initialize useRouter
 
   const currentUser: User = {
     role: 'Creator',
@@ -18,150 +19,52 @@ const CreatorDashboard: React.FC = () => {
   };
 
   const renderContent = () => {
-    switch (currentView) {
-      case 'dashboard':
-        return (
-          <>
-            <h1 className="text-3xl font-bold mb-6">Creator Dashboard</h1>
-            <p className="text-lg text-gray-700 mb-8">Welcome, Creator! Here you can manage your assessments and courses.</p>
+    // This component will primarily serve as the layout for the Creator Dashboard.
+    // The actual content for different views will be rendered by Next.js pages.
+    return (
+      <>
+        <h1 className="text-3xl font-bold mb-6">Creator Dashboard</h1>
+        <p className="text-lg text-gray-700 mb-8">Welcome, Creator! Here you can manage your assessments and courses.</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 className="text-xl font-semibold mb-3">Create New Assessment</h2>
-                <p className="text-gray-600 mb-4">Design and publish new assessment tests for your students.</p>
-                <button
-                  type='button'
-                  onClick={() => setCurrentView('create-assessment')}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Create Assessment
-                </button>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Card for Create Assessment */}
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold mb-3">Create New Assessment</h2>
+            <p className="text-gray-600 mb-4">Design and publish new assessment tests for your students.</p>
+            <button
+              type='button'
+              onClick={() => router.push('/assessmentPage')}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Create Assessment
+            </button>
+          </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 className="text-xl font-semibold mb-3">Create New Course</h2>
-                <p className="text-gray-600 mb-4">Build comprehensive courses with modules and integrated assessments.</p>
-                <button
-                  type='button'
-                  onClick={() => setCurrentView('create-course')}
-                  className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-                >
-                  Create Course
-                </button>
-              </div>
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold mb-3">Create New Course</h2>
+            <p className="text-gray-600 mb-4">Build comprehensive courses with modules and integrated assessments.</p>
+            <button
+              type='button'
+              onClick={() => router.push('/create-course')}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+            >
+              Create Course
+            </button>
+          </div>
 
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                <h2 className="text-xl font-semibold mb-3">View Analytics</h2>
-                <p className="text-gray-600 mb-4">Track performance and engagement for your content.</p>
-                <button
-                  type='button'
-                  onClick={() => setCurrentView('analytics')}
-                  className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded">
-                  View Analytics
-                </button>
-              </div>
-            </div>
-          </>
-        );
-      case 'create-assessment':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Create New Assessment</h1>
-            <p>This is where the assessment creation form will go.</p>
+          <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <h2 className="text-xl font-semibold mb-3">View Analytics</h2>
+            <p className="text-gray-600 mb-4">Track performance and engagement for your content.</p>
             <button
               type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
+              onClick={() => router.push('/analytics')}
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded">
+              View Analytics
             </button>
           </div>
-        );
-      case 'create-course':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Create New Course</h1>
-            <p>This is where the course creation form will go.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-      case 'assessments':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">My Assessments</h1>
-            <p>List of existing assessments will be displayed here.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-      case 'progress':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Progress Tracking</h1>
-            <p>Progress reports and analytics will be displayed here.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-      case 'badges':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Badges</h1>
-            <p>Badges earned or created will be displayed here.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-      case 'search':
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Search Content</h1>
-            <p>Search functionality for assessments and courses.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-      default:
-        return (
-          <div>
-            <h1 className="text-3xl font-bold mb-6">Page Not Found</h1>
-            <p>The requested page does not exist.</p>
-            <button
-              type='button'
-              onClick={() => setCurrentView('dashboard')}
-              className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
-            >
-              Back to Dashboard
-            </button>
-          </div>
-        );
-    }
+        </div>
+      </>
+    );
   };
 
   return (
@@ -170,8 +73,6 @@ const CreatorDashboard: React.FC = () => {
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         currentUser={currentUser}
-        currentView={currentView}
-        setCurrentView={setCurrentView}
         handleLogout={handleLogout}
       />
 
