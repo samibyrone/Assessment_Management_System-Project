@@ -1,9 +1,22 @@
 "use client"
 import { useState } from 'react';
 import { Plus, BookOpen, Users, CheckCircle, Award } from 'lucide-react';
-import Sidebar from './NavBar/Navbar';
+import Sidebar from './SideBar/Sidebar';
+import AssessmentPage from './Assessment/AssessmentPage';
+import StudentDashboard from './Assessment/StudentDashboard';
+import AnalyticsPage from './MarketPlace/AnalyticsPage';
+import { LucideIcon } from 'lucide-react';
+import { User } from './SideBar/Sidebar';
+import Badges from './Badges/Badges';
+type StatCardProps = {
+  icon: LucideIcon;
+  title: string;
+  value: number | string;
+  change: number;
+  color: 'blue' | 'green' | 'purple' | 'orange';
+};
 
-const StatCard = ({ icon: Icon, title, value, change, color }) => {
+const StatCard = ({ icon: Icon, title, value, change, color }: StatCardProps) => {
     const colorClasses = {
       blue: 'text-blue-500',
       green: 'text-green-500',
@@ -27,9 +40,7 @@ const StatCard = ({ icon: Icon, title, value, change, color }) => {
     );
   };
   
-  const Dashboard = ({ setActiveTab }) => {
-    const [showCreateModal, setShowCreateModal] = useState(false);
-  
+  const Dashboard = () => {
     const stats = {
       totalAssessments: 128,
       activeStudents: 12,
@@ -54,7 +65,6 @@ const StatCard = ({ icon: Icon, title, value, change, color }) => {
         <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold text-slate-900">Dashboard</h2>
           <button
-            onClick={() => setShowCreateModal(true)}
             className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -147,26 +157,46 @@ const StatCard = ({ icon: Icon, title, value, change, color }) => {
   };
   
   export default function Home() {
-    const [activeTab, setActiveTab] = useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [currentView, setCurrentView] = useState('dashboard');
+  
+    const currentUser: User = {
+      role: 'Creator',
+      avatar: '/vercel.svg',
+      name: 'John Doe',
+    };
+  
+    const handleLogout = () => {
+
+    };
   
     const renderContent = () => {
-      switch (activeTab) {
+      switch (currentView) {
         case 'dashboard':
-          return <Dashboard setActiveTab={setActiveTab} />;
+          return <Dashboard />;
         case 'assessments':
           return <AssessmentPage />;
         case 'students':
           return <StudentDashboard />;
         case 'analytics':
           return <AnalyticsPage />;
+        case 'badges':
+          return <Badges setCurrentView={setCurrentView} />;
         default:
-          return <Dashboard setActiveTab={setActiveTab} />;
+          return <Dashboard />;
       }
     };
   
     return (
       <div className="flex bg-slate-100">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Sidebar
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          currentUser={currentUser}
+          currentView={currentView}
+          setCurrentView={setCurrentView}
+          handleLogout={handleLogout}
+        />
         <main className="flex-1 p-8 overflow-y-auto">
           {renderContent()}
         </main>

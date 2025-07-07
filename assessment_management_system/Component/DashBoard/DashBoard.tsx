@@ -1,7 +1,5 @@
 'use client'
 import * as React from 'react';
-/// <reference types="react" />
-
 import Link from 'next/link'
 import Image from "next/image";
 import { useState } from 'react';
@@ -16,19 +14,19 @@ export default function LandingPage() {
       <div className={`fixed w-full bg-blue-900 transition-all duration-300 h-[12vh] z-[1000] shadow-md`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
+            <div className="flex items-center mt-10">
               <div className="flex-shrink-0">
-                <Link href="#home" className="text-4xl font-bold text-white mt-10 items-center hover:text-purple-500">AMS Hub</Link>
+                <Link href="#home" className="text-4xl font-bold text-white mt-10 items-center hover:text-cyan-500">AMS Hub</Link>
               </div>
             </div>
             
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4 mt-10">
-                <a href="#features" className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-3x1 font-semibold">Features</a>
-                <a href="#about" className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-3x1 font-semibold">About</a>
-                <a href="#testimonials" className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-3x1 font-semibold">Testimonials</a>
-<Link href="/login" className="text-white hover:text-purple-400 px-3 py-2 rounded-md text-3x1 font-semibold">Login</Link>
-<Link href="/signup" className="bg-primary border-secondary text-white hover:bg-green-800 px-4 py-2 rounded-md text-3x1 font-semibold">Get Started</Link>
+                <a href="#features" className="group relative text-white hover:text-green-600 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Features</a>
+                <a href="#about" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">About</a>
+                <a href="#testimonials" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Testimonials</a>
+                <Link href="/login" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Become a Creator</Link>
+                <Link href="/signup" className="group relative text-white hover:text-black hover:bg-cyan-500 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Get Started</Link>
               </div>
             </div>
 
@@ -46,11 +44,11 @@ export default function LandingPage() {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t mt-8">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 ">
-              <a href="#features" className="bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">Features</a>
-              <a href="#about" className="bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">About</a>
-              <a href="#testimonials" className="bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">Testimonials</a>
-<Link href="/login" className="bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">Login</Link>
-<Link href="/signup" className="bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">Get Started</Link>
+              <a href="#features" className="group relative bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-300 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Features</a>
+              <a href="#about" className="group relative bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-300 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">About</a>
+              <a href="#testimonials" className="group relative bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-300 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Testimonials</a>
+              <Link href="/login" className="group relative bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-300 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Become a Creator</Link>
+              <Link href="/signup" className="group relative bg-primary text-gray-600 hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-semibold">Get Started</Link>
             </div>
           </div>
         )}
@@ -58,7 +56,7 @@ export default function LandingPage() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-20">
-            <Image src="/assessment.jpeg" width={500} height={300} alt="assessmentDesign" className="w-2/2 h-150 mb-50" priority/>
+            <Image src="/assessment.jpeg" width={500} height={300} alt="assessmentDesign" className="w-full h-auto mb-12" priority/>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-10">
               Streamline Your
               <span className="text-rose-700"> Assessment </span>
@@ -68,12 +66,12 @@ export default function LandingPage() {
               A comprehensive platform for creating, delivering, and evaluating assessments. 
               Perfect for educators, employers, and learners seeking efficient assessment solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-30">
-              <Link href="../SignUpForm/SignupForm.tsx" className=" border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors flex items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+              <Link href="/signup" className=" border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors flex items-center justify-center">
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/marketplace" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
+              <Link href="/assessmentPage" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
                 Browse Assessments
               </Link>
             </div>
@@ -83,18 +81,18 @@ export default function LandingPage() {
 
       <section id="features" className="py-20 bg-gray-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20 mt-15">
+          <div className="text-center mb-20 mt-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-5">
               Powerful Features for Every User
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl font-semibold mx-auto mb-20">
-              Whether you are a student, educator, or employer, our platform provides the tools you need to succeed.
+              Whether you are a student, educator, or creator, our platform provides the tools you need to succeed.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-duration-200 transform hover:scale-105 mb-7 ml-5">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition duration-200 transform hover:scale-105 mb-7 ml-5">
                 <div className="mb-4 text-orange-500">{feature.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -139,7 +137,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-100 to-blue-400 p-8 rounded-lg hover:shadow-m transform scale-105 transition-duration-200">
+            <div className="bg-gradient-to-br from-blue-100 to-blue-400 p-8 rounded-lg hover:shadow-md transform scale-105 transition duration-200">
               <div className="text-center">
                 <div className="text-4xl font-bold text-blue-700 mb-3">50,000+</div>
                 <div className="text-primary mb-5">Assessments Created</div>
@@ -168,7 +166,7 @@ export default function LandingPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-duration-200 transform hover:scale-105  mb-7 ml-5">
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition duration-200 transform hover:scale-105  mb-7 ml-5">
                 <p className="text-gray-600 mb-4 italic">{testimonial.content}</p>
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
@@ -196,7 +194,7 @@ export default function LandingPage() {
             Join thousands of users who have already streamlined their assessment workflows using our platform
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/auth/signup" className="border bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 hover:text-white transition-.colors">
+            <Link href="/signup" className="border bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 hover:text-white transition-colors">
               Start Free Trial
             </Link>
             <Link href="/marketplace" className="border bg-white text-primary px-8 py-3 rounded-lg text-lg font-semibold hover:bg-purple-700 hover:text-white transition-colors">
@@ -204,7 +202,7 @@ export default function LandingPage() {
             </Link>
           </div>
         </div>
-      </section>      
+      </section>
     </div>
-  )
+  );
 }

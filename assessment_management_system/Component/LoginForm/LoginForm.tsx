@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { BookOpen } from "lucide-react";
 import { handleLogin, handleGoogleAuth } from "./Auth";
+import { useRouter } from 'next/navigation';
 
-export default function LoginForm(): JSX.Element {
+export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Creator");
+  const router = useRouter();
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4'>
@@ -24,7 +26,7 @@ export default function LoginForm(): JSX.Element {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleLogin(email, password, role);
+            handleLogin(email, password, role, router);
           }}
         >
           <div className='space-y-4'>
@@ -92,7 +94,7 @@ export default function LoginForm(): JSX.Element {
           </div>
 
           <button
-            onClick={() => handleGoogleAuth(role)}
+            onClick={() => handleGoogleAuth(role, router)}
             className='mt-4 w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-2'
           >
             <svg className='w-5 h-5' viewBox='0 0 24 24'>
@@ -120,6 +122,7 @@ export default function LoginForm(): JSX.Element {
         <p className='mt-6 text-center text-sm text-gray-600'>
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
+            type='button'
             onClick={() => setIsLogin(!isLogin)}
             className='text-indigo-600 hover:text-indigo-500 font-medium'
           >
