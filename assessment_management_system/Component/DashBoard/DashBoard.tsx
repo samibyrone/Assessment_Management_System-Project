@@ -7,7 +7,7 @@ import { features } from '../../Dashboard_Features/Features'
 import { ArrowRight, CheckCircle, X, Menu } from 'lucide-react'
 import { testimonials } from '../../Dashboard_Features/Testimonials'
 
-export default function LandingPage() {
+export default function  LandingPage() {
      const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-white">
@@ -25,13 +25,14 @@ export default function LandingPage() {
                 <a href="#features" className="group relative text-white hover:text-green-600 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Features</a>
                 <a href="#about" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">About</a>
                 <a href="#testimonials" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Testimonials</a>
-                <Link href="/login" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Become a Creator</Link>
+                <Link href="/creators-login" className="group relative text-white hover:text-green-400 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Become a Creator</Link>
                 <Link href="/signup" className="group relative text-white hover:text-black hover:bg-cyan-500 px-3 py-2 rounded-md text-xl font-semibold after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-400 after:w-0 after:left-0 after:bottom-[-5px] hover:after:w-full after:transition-all after:duration-300">Get Started</Link>
               </div>
             </div>
 
             <div className="md:hidden">
               <button
+                type="button"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white hover:text-primary p-2"
               >
@@ -56,7 +57,7 @@ export default function LandingPage() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-20">
-            <Image src="/assessment.jpeg" width={500} height={300} alt="assessmentDesign" className="w-full h-auto mb-12" priority/>
+            <Image src="/assessment.jpeg" width={500} height={200} alt="assessmentDesign" className="w-full h-auto mb-12" priority/>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-10">
               Streamline Your
               <span className="text-rose-700"> Assessment </span>
@@ -71,8 +72,8 @@ export default function LandingPage() {
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/assessmentPage" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
-                Browse Assessments
+              <Link href="/marketplace" className="border border-primary text-primary px-8 py-3 mr-5 mt-10 rounded-lg text-lg font-semibold hover:bg-blue-800 hover:text-white transition-colors">
+                Browse Market Place
               </Link>
             </div>
           </div>

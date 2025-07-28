@@ -53,6 +53,8 @@ export default function TalentMarketplace() {
                 <option>Programming</option>
                 <option>Design</option>
                 <option>Business</option>
+                <option>Data Analytics</option>
+                <option>Achitecture</option>
               </select>
               <select aria-label="Select Status" className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 <option>All Status</option>
@@ -61,7 +63,7 @@ export default function TalentMarketplace() {
                 <option>Flagged</option>
               </select>
             </div>
-            <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+            <button type="button" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
               <Filter className="w-4 h-4" />
               Apply Filters
             </button>

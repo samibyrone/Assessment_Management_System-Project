@@ -14,6 +14,8 @@ interface SidebarProps {
     sidebarOpen: boolean;
     setSidebarOpen: (open: boolean) => void;
     currentUser: User | null;
+    currentView: string;
+    setCurrentView: (view: string) => void;
     handleLogout: () => void;
 }
 
