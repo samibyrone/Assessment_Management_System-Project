@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BookOpen } from "lucide-react";
-import { handleLogin, handleGoogleAuth } from "./Auth";
-import { handleSignup, handleGoogleAuthSignup } from "../SignUpForm/SignupAuth";
+import { handleLogin, handleGoogleAuth } from "./CreatorAuth";
+import { handleSignup, handleGoogleAuthSignup } from "../CreatorsSignup/CreatorsSignupAuth";
 import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
@@ -9,7 +9,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Talent");
+  const [role, setRole] = useState("Creator");
   const router = useRouter();
 
   return (
@@ -46,7 +46,7 @@ export default function LoginForm() {
                 className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500'
                 title='Select user role'
               >
-                <option value='educator'>Talent</option>
+                <option value='educator'>Creator</option>
               </select>
             </div>
 
@@ -116,7 +116,6 @@ export default function LoginForm() {
           </div>
 
           <button
-            type='button'
             onClick={() => {
               if (isLogin) {
                 handleGoogleAuth(role, router);

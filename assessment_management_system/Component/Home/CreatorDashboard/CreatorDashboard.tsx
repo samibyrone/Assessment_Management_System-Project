@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import Sidebar, { User } from '../SideBar/Sidebar';
 import { getCreatorAssessments } from '../../../services/assessmentService';
 
@@ -8,20 +8,45 @@ interface Assessment {
   id: string;
   title: string;
   description: string;
-  // Add other properties of an assessment
+}
+
+interface UserData {
+  name: string;
+  email: string;
+  role: string;
+  avatar?: string; 
 }
 
 export default function CreatorDashboard () {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentView, setCurrentView] = useState('dashboard');
   const [assessments, setAssessments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [username, setUsername] = useState<string>('');
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('/api/auth/user'); 
+        if (!response.ok) {
+          throw new Error('Failed to fetch user data');
+        }
+        const userData: UserData = await response.json();
+        setUsername(userData.name);
+      } catch (err: unknown) {
+        console.error('Error fetching user:', err);
+        router.push('/login');
+      }
+    };
+
+    fetchUser();
+  }, [router]);
   const currentUser: User = {
     role: 'Creator',
     avatar: '/vercel.svg',
-    name: 'John Doe',
+    name: username || 'Guest', 
   };
 
   useEffect(() => {
@@ -29,7 +54,7 @@ export default function CreatorDashboard () {
       try {
         const data = await getCreatorAssessments();
         setAssessments(data);
-      } catch (err: unknown) { 
+      } catch (err: unknown) {
         if (err instanceof Error) {
           setError(err.message);
         } else {
@@ -43,8 +68,20 @@ export default function CreatorDashboard () {
     fetchAssessments();
   }, []);
 
-  const handleLogout = () => {
-    console.log('User logged out');
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', { method: 'POST' });
+      if (response.ok) {
+        console.log('User logged out successfully');
+        router.push('/login');
+      } else {
+        console.error('Logout failed');
+        alert('Logout failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+      alert('An error occurred during logout.');
+    }
   };
 
   const renderContent = () => {
@@ -59,7 +96,7 @@ export default function CreatorDashboard () {
     return (
       <>
         <h1 className="text-3xl font-bold mb-6">Creator Dashboard</h1>
-        <p className="text-lg text-gray-700 mb-8">Welcome, Creator! Here you can manage your assessments and courses.</p>
+        <p className="text-lg text-gray-700 mb-8">Welcome, {username}! Here you can manage your assessments and courses.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
@@ -121,6 +158,8 @@ export default function CreatorDashboard () {
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         currentUser={currentUser}
+        currentView={currentView}
+        setCurrentView={setCurrentView}
         handleLogout={handleLogout}
       />
 

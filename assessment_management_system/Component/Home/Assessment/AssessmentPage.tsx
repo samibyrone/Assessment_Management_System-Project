@@ -21,7 +21,7 @@ const AssessmentList: React.FC<AssessmentListProps> = ({
 }) => (
   <div className='p-6 mt-10 mr-10 ml-10'>
     <div className='flex items-center justify-between mb-15'>
-      <h1 href="#" className='text-4xl font-bold text-gray-900'>Assessments</h1>
+      <h1 className='text-4xl font-bold text-gray-900'>Assessments</h1>
       {(currentUser?.role === "Creator" || currentUser?.role === "Talent") && (
         <button
           type="button"

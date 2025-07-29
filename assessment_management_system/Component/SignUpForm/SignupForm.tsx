@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BookOpen } from "lucide-react";
 import { useRouter } from 'next/navigation';
 import { handleSignup, handleGoogleAuthSignup } from "../SignUpForm/SignupAuth";
+import { handleLogin, handleGoogleAuth } from "../LoginForm/Auth";
 
 export default function SignupForm() {
   const [isSignup, setIsSignup] = useState(false);
@@ -20,14 +21,18 @@ export default function SignupForm() {
           </div>
           <h1 className='text-2xl font-bold text-gray-900'>AMS Hub</h1>
           <p className='text-gray-600 mt-2'>
-            {isSignup ? "Welcome back!" : "Create your account"}
+            {isSignup ? "Create your account" : "Welcome back!"}
           </p>
         </div>
 
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleSignup(username, email, password, role, router);
+            if (isSignup) {
+              handleSignup(username, email, password, role, router);
+            } else {
+              handleLogin(email, password, role, router);
+            }
           }}
         >
           <div className='space-y-4'>
@@ -45,19 +50,21 @@ export default function SignupForm() {
               </select>
             </div>
 
-            <div>
-              <label className='block text-sm font-medium text-gray-700 mb-2'>
-                Username
-              </label>
-              <input
-                type='text'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                placeholder='Enter your username'
-                required
-              />
-            </div>
+            {isSignup && (
+              <div>
+                <label className='block text-sm font-medium text-gray-700 mb-2'>
+                  Username
+                </label>
+                <input
+                  type='text'
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500'
+                  placeholder='Enter your username'
+                  required
+                />
+              </div>
+            )}
 
             <div>
               <label className='block text-sm font-medium text-gray-700 mb-2'>
@@ -91,7 +98,7 @@ export default function SignupForm() {
               type='submit'
               className='w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors font-medium'
             >
-              {isSignup ? "Sign In" : "Sign Up"}
+              {isSignup ? "Sign Up" : "Sign In"}
             </button>
           </div>
         </form>
@@ -110,7 +117,13 @@ export default function SignupForm() {
 
           <button
             type='button'
-            onClick={() => handleGoogleAuthSignup(role, router)}
+            onClick={() => {
+              if (isSignup) {
+                handleGoogleAuthSignup(role, router);
+              } else {
+                handleGoogleAuth(role, router);
+              }
+            }}
             className='mt-4 w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-2'
           >
             <svg className='w-5 h-5' viewBox='0 0 24 24'>
@@ -136,13 +149,13 @@ export default function SignupForm() {
         </div>
 
         <p className='mt-6 text-center text-sm text-gray-600'>
-          {isSignup ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
             type='button'
             onClick={() => setIsSignup(!isSignup)}
             className='text-indigo-600 hover:text-indigo-500 font-medium'
           >
-            {isSignup ? "Sign up" : "Sign in"}
+            {isSignup ? "Sign in" : "Sign up"}
           </button>
         </p>
       </div>

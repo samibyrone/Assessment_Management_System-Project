@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { BookOpen } from "lucide-react";
-import { handleLogin, handleGoogleAuth } from "./Auth";
-import { handleSignup, handleGoogleAuthSignup } from "../SignUpForm/SignupAuth";
 import { useRouter } from 'next/navigation';
+import { handleSignup, handleGoogleAuthSignup } from "../CreatorsSignup/CreatorsSignupAuth";
+import { handleLogin, handleGoogleAuth } from "../CreatorsLogin/CreatorAuth";
 
-export default function LoginForm() {
-  const [isLogin, setIsLogin] = useState(true);
+export default function SignupForm() {
+  const [isSignup, setIsSignup] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Talent");
+  const [role, setRole] = useState("Creator"); // Changed default role to Creator
   const router = useRouter();
 
   return (
@@ -21,17 +21,17 @@ export default function LoginForm() {
           </div>
           <h1 className='text-2xl font-bold text-gray-900'>AMS Hub</h1>
           <p className='text-gray-600 mt-2'>
-            {isLogin ? "Welcome back!" : "Create your account"}
+            {isSignup ? "Create your account" : "Welcome back!"}
           </p>
         </div>
 
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (isLogin) {
-              handleLogin(email, password, role, router);
-            } else {
+            if (isSignup) {
               handleSignup(username, email, password, role, router);
+            } else {
+              handleLogin(email, password, role, router);
             }
           }}
         >
@@ -46,11 +46,11 @@ export default function LoginForm() {
                 className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500'
                 title='Select user role'
               >
-                <option value='educator'>Talent</option>
+                <option value='educator'>Creator</option>
               </select>
             </div>
 
-            {!isLogin && (
+            {isSignup && (
               <div>
                 <label className='block text-sm font-medium text-gray-700 mb-2'>
                   Username
@@ -98,7 +98,7 @@ export default function LoginForm() {
               type='submit'
               className='w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors font-medium'
             >
-              {isLogin ? "Sign In" : "Sign Up"}
+              {isSignup ? "Sign Up" : "Sign In"}
             </button>
           </div>
         </form>
@@ -118,10 +118,10 @@ export default function LoginForm() {
           <button
             type='button'
             onClick={() => {
-              if (isLogin) {
-                handleGoogleAuth(role, router);
-              } else {
+              if (isSignup) {
                 handleGoogleAuthSignup(role, router);
+              } else {
+                handleGoogleAuth(role, router);
               }
             }}
             className='mt-4 w-full bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-2'
@@ -149,13 +149,13 @@ export default function LoginForm() {
         </div>
 
         <p className='mt-6 text-center text-sm text-gray-600'>
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
           <button
             type='button'
-            onClick={() => setIsLogin(!isLogin)}
+            onClick={() => setIsSignup(!isSignup)}
             className='text-indigo-600 hover:text-indigo-500 font-medium'
           >
-            {isLogin ? "Sign up" : "Sign in"}
+            {isSignup ? "Sign in" : "Sign up"}
           </button>
         </p>
       </div>
